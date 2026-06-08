@@ -51,6 +51,29 @@
   white-space: nowrap;
 }
 
+.bio-sub-items {
+  padding-left: 3rem;
+  margin-top: var(--space-xs);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.bio-sub-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-md);
+  font-size: var(--slide-text-dense);
+  opacity: 0.72;
+  line-height: 1.4;
+}
+
+.bio-sub-item__prefix {
+  color: var(--terminal-white-dim);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
 .bio-subtitle {
   color: var(--terminal-orange);
   font-weight: 700;
@@ -1988,4 +2011,120 @@
   .mcp-slide {
     padding: 0;
   }
+}
+
+/* === STAR WARS CRAWL SLIDES ===
+ * Full-bleed perspective text crawl. The .slide background prop supplies the
+ * space image; .sw-scene fills the available slide area without absolute
+ * positioning (so non-titled slides still get correct height from their
+ * natural content flow). The crawl is perspective-projected with rotateX so
+ * text recedes toward the horizon. scrollOffset (translateY) shifts how far
+ * the crawl has already scrolled — higher = text has moved further away. */
+
+.sw-scene {
+  position: relative;
+  width: 100%;
+  /* Fill slide height: full viewport minus the bottom bar and container padding */
+  height: calc(var(--vh-full) - var(--input-bar-height) - var(--space-lg) * 2);
+  overflow: hidden;
+  /* Force dark-theme yellow regardless of light/dark theme toggle —
+   * the space background is always dark so contrast rules are static. */
+  --terminal-yellow: #ffd166;
+}
+
+/* Perspective container — vanishing point near the top edge */
+.sw-crawl-wrapper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  perspective: 520px;
+  perspective-origin: 50% 12%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+/* The tilted text strip — bottom-anchored, text recedes upward into horizon */
+.sw-crawl {
+  width: 64%;
+  text-align: justify;
+  font-family: var(--font-mono);
+  transform-origin: 50% 100%;
+  /* inline transform: rotateX(25deg) translateY(-Xpx) set per-slide */
+  padding-bottom: 6%;
+}
+
+/* Gradient fade: text appears out of nothing at the bottom */
+.sw-fade-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 22%;
+  background: linear-gradient(to top, #000008 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Gradient fade: text disappears toward the horizon at the top */
+.sw-fade-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 32%;
+  background: linear-gradient(to bottom, #000008 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Episode title block — placed at the top of the crawl (furthest/smallest) */
+.sw-title-block {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.sw-episode {
+  font-size: var(--font-size-body);
+  color: var(--terminal-yellow);
+  letter-spacing: 0.35em;
+  opacity: 0.65;
+  margin-bottom: var(--space-xs);
+  font-weight: 400;
+}
+
+.sw-main-title {
+  font-size: var(--font-size-h1);
+  color: var(--terminal-yellow);
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  margin: 0;
+  text-shadow:
+    0 0 40px rgba(255, 209, 102, 0.55),
+    0 0 80px rgba(255, 209, 102, 0.2);
+}
+
+/* Body paragraphs */
+.sw-para {
+  font-size: var(--font-size-body);
+  line-height: 1.8;
+  margin-bottom: 1.5em;
+  font-style: normal;
+}
+
+/* Dim paragraphs — exist in the story but are not the focal moment */
+.sw-para--dim {
+  color: var(--terminal-yellow);
+  opacity: 0.22;
+}
+
+/* THE paragraph — bright, glowing, impossible to miss */
+.sw-para--highlight {
+  color: var(--terminal-yellow);
+  opacity: 1;
+  font-weight: 700;
+  text-shadow:
+    0 0 24px rgba(255, 209, 102, 0.65),
+    0 0 48px rgba(255, 209, 102, 0.28);
+  letter-spacing: 0.01em;
 }

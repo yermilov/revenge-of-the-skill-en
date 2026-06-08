@@ -1,8 +1,7 @@
 import { TitleSlide } from './TitleSlide';
+import { StarWarsCrawlSlide1 } from './StarWarsCrawlSlide1';
+import { StarWarsCrawlSlide2 } from './StarWarsCrawlSlide2';
 import { BioSlide } from './BioSlide';
-import { TimelineSlide } from './TimelineSlide';
-import { AgendaSlide } from './AgendaSlide';
-import { BillionDollarSlide } from './BillionDollarSlide';
 import { JuniorEngineerSlide } from './JuniorEngineerSlide';
 import { DisclaimerSlide } from './DisclaimerSlide';
 import { TheorySlide } from './TheorySlide';
@@ -31,4 +30,4 @@ import { LifeAfterCommitSlide } from './LifeAfterCommitSlide';
 import { SkillsAuthoringSlide } from './SkillsAuthoringSlide';
 import { FinalSlide } from './FinalSlide';
 
-export const slides = [TitleSlide, BioSlide, TimelineSlide, AgendaSlide, BillionDollarSlide, JuniorEngineerSlide, DisclaimerSlide, TheorySlide, ModelsSlide, ContextPrinciplesSlide, ContextSlide, SystemPromptSlide, McpSlide, ClaudeMdSlide, DialogueSlide, PromptsCommandsSubagentsSlide, WhatIsSkillSlide, TheoryCompleteSlide, InstallStatusLineSlide, VibeFlowStepsSlide, ContextAdviceSlide, MarketplacesSlide, LaunchSlide, WarcraftFunSlide, CodeSlopSlide, BreakOutOfCodingSlide, LifeAfterCommitSlide, ClaudeCodeSlide, UltimateExampleSlide, OneMoreTipSlide, SkillsAuthoringSlide, FinalSlide];
+export const slides = [TitleSlide, StarWarsCrawlSlide1, BioSlide, StarWarsCrawlSlide2, JuniorEngineerSlide, DisclaimerSlide, TheorySlide, ModelsSlide, ContextPrinciplesSlide, ContextSlide, SystemPromptSlide, McpSlide, ClaudeMdSlide, DialogueSlide, PromptsCommandsSubagentsSlide, WhatIsSkillSlide, TheoryCompleteSlide, InstallStatusLineSlide, VibeFlowStepsSlide, ContextAdviceSlide, MarketplacesSlide, LaunchSlide, WarcraftFunSlide, CodeSlopSlide, BreakOutOfCodingSlide, LifeAfterCommitSlide, ClaudeCodeSlide, UltimateExampleSlide, OneMoreTipSlide, SkillsAuthoringSlide, FinalSlide];

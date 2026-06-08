@@ -35,11 +35,27 @@ function BioItem({ level, children }: { level: Level; children: React.ReactNode 
   );
 }
 
+function BioSubItem({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="bio-sub-item">
+      <span className="bio-sub-item__prefix">--</span>
+      <span>{children}</span>
+    </div>
+  );
+}
+
 const BIO_ITEMS: { level: Level; content: ReactNode }[] = [
   { level: 'low',    content: <>started as a Java backend engineer</> },
   { level: 'medium', content: <>then: tech-led product features</> },
   { level: 'medium', content: <>then: tech lead of the platform org</> },
   { level: 'high',   content: <>now: AI-first engineering</> },
+];
+
+const AI_FIRST_SUBS = [
+  'saw the potential and consciously stopped writing code by hand',
+  'found my comfortable AI agentic coding workflow',
+  'championed Claude Code at Superhuman',
+  'built internal tooling: plugins, skills, agents',
 ];
 
 export const BioSlide: SlideDefinition = {
@@ -62,6 +78,13 @@ export const BioSlide: SlideDefinition = {
             revealStage >= i ? (
               <BioItem key={i} level={item.level}>{item.content}</BioItem>
             ) : null,
+          )}
+          {revealStage >= 3 && (
+            <div className="bio-sub-items">
+              {AI_FIRST_SUBS.map((text, i) => (
+                <BioSubItem key={i}>{text}</BioSubItem>
+              ))}
+            </div>
           )}
         </div>
       </div>
