@@ -13,5 +13,5 @@ export default defineConfig({
       svgo: { plugins: [{ removeViewBox: false }] },
     }),
   ],
-  base: '/pragmatic-vibe-clauding-en/',
+  base: '/revenge-of-the-skill-en/',
 })

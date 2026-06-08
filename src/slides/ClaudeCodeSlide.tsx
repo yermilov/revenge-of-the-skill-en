@@ -3,8 +3,8 @@ import { QRCodeSVG } from 'qrcode.react';
 import { SlideDefinition, SlideContentProps } from '../types/slides';
 import { SlideItem } from '../components/SlideElements';
 
-const REPO_URL = 'https://github.com/yermilov/pragmatic-vibe-clauding-en';
-const REPO_LABEL = 'github.com/yermilov/pragmatic-vibe-clauding-en';
+const REPO_URL = 'https://github.com/yermilov/revenge-of-the-skill-en';
+const REPO_LABEL = 'github.com/yermilov/revenge-of-the-skill-en';
 
 function Prompt({ children }: { children: ReactNode }) {
   return (

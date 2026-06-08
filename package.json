@@ -1,9 +1,9 @@
 {
-  "name": "pragmatic-vibe-clauding-en",
+  "name": "revenge-of-the-skill-en",
   "private": true,
   "version": "0.0.1",
   "type": "module",
-  "homepage": "https://yermilov.github.io/pragmatic-vibe-clauding-en",
+  "homepage": "https://yermilov.github.io/revenge-of-the-skill-en",
   "scripts": {
     "dev": "vite",
     "check:async-slides": "bun run scripts/check-async-slides.ts",
