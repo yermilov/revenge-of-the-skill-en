@@ -7,8 +7,8 @@ const SPACE_BG = `
   url(${spaceBg}) center/cover no-repeat
 `;
 
-export const StarWarsCrawlSlide1: SlideDefinition = {
-  id: 'star-wars-crawl-1',
+export const StarWarsCrawlSlide4: SlideDefinition = {
+  id: 'star-wars-crawl-4',
   background: SPACE_BG,
-  content: <StarWarsCrawl highlighted={1} />,
+  content: <StarWarsCrawl highlighted={4} />,
 };
