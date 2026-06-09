@@ -5,10 +5,6 @@ import { PacManCanvas } from '../components/pacman/PacManCanvas';
 
 const BULLETS: ReactNode[] = [
   <>
-    Claude Code increases the <Emphasis>volume</Emphasis> of work, not the{' '}
-    <Emphasis color="orange">speed</Emphasis>
-  </>,
-  <>
     on your own you'll write code either <Emphasis color="orange">better</Emphasis>{' '}
     or <Emphasis color="orange">faster</Emphasis>
   </>,
@@ -30,8 +26,9 @@ export const OneMoreTipSlide: SlideDefinition = {
   title: (
     <>
       <span className="text-dim">&gt;</span>{' '}
-      <span className="text-green">one last</span>{' '}
-      <span className="text-orange">tip</span>
+      <span className="text-green">increase the</span>{' '}
+      <span className="text-orange">volume</span>, not{' '}
+      <span className="text-orange">speed</span>
     </>
   ),
   content: ({ revealStage }) => {

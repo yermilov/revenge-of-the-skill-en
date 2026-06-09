@@ -22,7 +22,7 @@ export const WhatIsSkillSlide: SlideDefinition = {
   title: (
     <>
       <span className="text-dim">&gt;</span>{' '}
-      <span className="text-green">but really all you need is</span>{' '}
+      <span className="text-green">all you need is</span>{' '}
       <span className="text-orange">skills</span>
     </>
   ),
