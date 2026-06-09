@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-A custom terminal-themed presentation site built with React and TypeScript. Features a Claude Code-inspired aesthetic with command-based navigation. Hosted on GitHub Pages at https://yermilov.github.io/pragmatic-vibe-clauding-en
+A custom terminal-themed presentation site built with React and TypeScript. Features a Claude Code-inspired aesthetic with command-based navigation. Hosted on GitHub Pages at https://yermilov.github.io/revenge-of-the-skill-en
 
 ## Tech Stack
 
@@ -16,7 +16,7 @@ A custom terminal-themed presentation site built with React and TypeScript. Feat
 
 ```bash
 bun install      # Install dependencies (REQUIRED before first `bun run dev`)
-bun run dev      # Start dev server (http://localhost:5173/pragmatic-vibe-clauding-en/)
+bun run dev      # Start dev server (http://localhost:5173/revenge-of-the-skill-en/)
 bun run build    # Build for production
 bun run preview  # Preview production build
 bun run deploy   # Manual deploy to GitHub Pages
@@ -129,7 +129,7 @@ import myImage from '/my-image.png?url';
 <img src={myImage} alt="Description" loading="lazy" />
 ```
 
-**Important:** Do NOT use direct paths like `src="/image.png"` — they break on GitHub Pages due to the base URL (`/pragmatic-vibe-clauding-en`).
+**Important:** Do NOT use direct paths like `src="/image.png"` — they break on GitHub Pages due to the base URL (`/revenge-of-the-skill-en`).
 
 **Build-time compression:** `vite-plugin-imagemin` is configured in `vite.config.ts` and automatically compresses PNGs/JPEGs at build time (71–86% size reduction). No manual compression needed.
 
@@ -299,7 +299,7 @@ This ensures:
 Workflow:
 1. Make the change
 2. Confirm dev server is running (`bun run dev`)
-3. Use Chrome extension to navigate to `http://localhost:5173/pragmatic-vibe-clauding-en/`
+3. Use Chrome extension to navigate to `http://localhost:5173/revenge-of-the-skill-en/`
 4. Take a screenshot and confirm the change looks correct before declaring done
 
 ### Code Style
@@ -375,4 +375,4 @@ git commit -m "Add/Fix/Update X"
 git push origin main
 ```
 
-**Auth note:** pushes to `yermilov/pragmatic-vibe-clauding-en` require the personal `yermilov` GitHub account, not the EMU `yaroslav-yermilov_super` account. If a push returns 403, run `gh auth switch --user yermilov`, push, then switch back with `gh auth switch --user yaroslav-yermilov_super`.
+**Auth note:** pushes to `yermilov/revenge-of-the-skill-en` require the personal `yermilov` GitHub account, not the EMU `yaroslav-yermilov_super` account. If a push returns 403, run `gh auth switch --user yermilov`, push, then switch back with `gh auth switch --user yaroslav-yermilov_super`.
