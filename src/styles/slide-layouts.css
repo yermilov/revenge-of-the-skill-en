@@ -2128,3 +2128,345 @@
     0 0 48px rgba(255, 209, 102, 0.28);
   letter-spacing: 0.01em;
 }
+
+
+/* === FRONTMATTER FIELD MAP SLIDE === */
+/* Taxonomy of SKILL.md frontmatter fields: one row per concern group —
+ * small-caps label on the left, color-coded field chips wrapping right.
+ * Groups appear per reveal stage via the shared slideItemFadeIn keyframe. */
+
+.fm-map {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-xl);
+  width: 100%;
+  max-width: 1560px;
+  margin: 0 auto;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.fm-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: slideItemFadeIn var(--transition-slow) var(--ease) both;
+}
+
+.fm-group__head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-md);
+  min-width: 0;
+}
+
+.fm-group__label {
+  flex: none;
+  font-size: clamp(0.85rem, 1.1vw, 1.1rem);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.fm-group__explainer {
+  color: var(--terminal-white-dim);
+  font-size: clamp(0.85rem, 1.05vw, 1.05rem);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fm-group__chips {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  min-width: 0;
+}
+
+.fm-chip {
+  border: 1px solid color-mix(in srgb, var(--fm-accent) 38%, transparent);
+  background: var(--terminal-bg-elevated);
+  border-radius: var(--radius-card);
+  padding: 8px 18px;
+  text-align: left;
+  box-shadow: 0 0 14px color-mix(in srgb, var(--fm-accent) 8%, transparent);
+}
+
+.fm-chip__name {
+  display: block;
+  color: var(--fm-accent);
+  font-size: clamp(1rem, 1.45vw, 1.45rem);
+  font-weight: 700;
+  line-height: 1.4;
+  text-shadow: 0 0 12px color-mix(in srgb, var(--fm-accent) 35%, transparent);
+  white-space: nowrap;
+}
+
+.fm-chip__hint {
+  display: block;
+  color: var(--terminal-white-dim);
+  font-size: clamp(0.75rem, 0.95vw, 0.95rem);
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+/* Focused chip: example value (code-cyan) replaces the hint, border glows
+ * at full accent so the audience tracks the walkthrough cursor. */
+.fm-chip--active {
+  border-color: color-mix(in srgb, var(--fm-accent) 85%, transparent);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--fm-accent) 28%, transparent);
+}
+
+/* Standalone example bar below the group: the focused field rendered as a
+ * real YAML line, with an optional dim trailing comment. */
+.fm-example {
+  align-self: flex-start;
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-md);
+  padding: 14px 24px;
+  background: var(--terminal-bg-elevated);
+  border: 1px solid color-mix(in srgb, var(--terminal-cyan) 35%, transparent);
+  border-radius: var(--radius-card);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--terminal-cyan) 10%, transparent);
+  animation: slideItemFadeIn var(--transition-normal) var(--ease) both;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.fm-example__code {
+  color: var(--terminal-cyan);
+  text-shadow: 0 0 12px var(--terminal-cyan-glow);
+  font-size: clamp(1rem, 1.5vw, 1.5rem);
+  white-space: nowrap;
+}
+
+.fm-example__note {
+  color: var(--terminal-white-dim);
+  font-style: italic;
+  font-size: clamp(0.85rem, 1.1vw, 1.1rem);
+  white-space: nowrap;
+}
+
+
+/* === INSTRUCTIONS VS KNOWLEDGE SLIDE === */
+/* Two-panel duel: each card carries an accent (--iv-accent), reveals its
+ * phrasing quote and headline stat per stage, verdict bar closes the slide. */
+
+.iv-duel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: var(--space-lg);
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.iv-card {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background: var(--terminal-bg-elevated);
+  border: 1px solid color-mix(in srgb, var(--iv-accent) 40%, transparent);
+  border-radius: var(--radius-card);
+  box-shadow: 0 0 22px color-mix(in srgb, var(--iv-accent) 10%, transparent);
+  text-align: center;
+  animation: slideItemFadeIn var(--transition-slow) var(--ease) both;
+}
+
+.iv-card__name {
+  color: var(--iv-accent);
+  font-size: clamp(1.4rem, 2.2vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-shadow: 0 0 16px color-mix(in srgb, var(--iv-accent) 45%, transparent);
+}
+
+.iv-card__def {
+  color: var(--terminal-white);
+  font-size: clamp(0.95rem, 1.25vw, 1.25rem);
+  max-width: 44ch;
+}
+
+.iv-card__quote {
+  color: var(--terminal-cyan);
+  font-style: italic;
+  font-size: clamp(1.05rem, 1.5vw, 1.5rem);
+  text-shadow: 0 0 12px var(--terminal-cyan-glow);
+  animation: slideItemFadeIn var(--transition-normal) var(--ease) both;
+}
+
+.iv-vs {
+  align-self: center;
+  color: var(--terminal-white-muted);
+  font-size: clamp(1.2rem, 1.8vw, 1.8rem);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.iv-verdict {
+  margin-top: var(--space-lg);
+  text-align: center;
+  font-size: clamp(1.05rem, 1.5vw, 1.5rem);
+  color: var(--terminal-white);
+  animation: slideItemFadeIn var(--transition-normal) var(--ease) both;
+}
+
+.iv-verdict__footnote {
+  margin-top: var(--space-sm);
+  color: var(--terminal-white-muted);
+  font-size: clamp(0.85rem, 1.05vw, 1.05rem);
+}
+
+/* Subcategory pills inside each duel card — the remaining three patterns
+ * embedded as flavors of the two main families. */
+.iv-card__subs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm);
+  animation: slideItemFadeIn var(--transition-normal) var(--ease) both;
+}
+
+.iv-sub {
+  border: 1px dashed color-mix(in srgb, var(--iv-accent) 40%, transparent);
+  border-radius: var(--radius-card);
+  padding: 4px 14px;
+  color: var(--terminal-white-dim);
+  font-size: clamp(0.8rem, 1vw, 1rem);
+  white-space: nowrap;
+}
+
+.iv-sub__name {
+  color: var(--iv-accent);
+  font-weight: 700;
+}
+
+
+/* === SKILL-LINT SLIDE === */
+/* Mock linter run: terminal card, findings revealed row by row. */
+
+.lint-card {
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: var(--space-md) var(--space-lg);
+  background: var(--terminal-bg-elevated);
+  border: 1px solid var(--terminal-border-bright);
+  border-radius: var(--radius-card);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  text-align: left;
+}
+
+.lint-card__cmd {
+  color: var(--terminal-green);
+  text-shadow: var(--glow-text-green);
+  font-size: clamp(1rem, 1.3vw, 1.3rem);
+  margin-bottom: var(--space-md);
+}
+
+.lint-card__cmd::before {
+  content: '$ ';
+  color: var(--terminal-white-dim);
+}
+
+.lint-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+  padding: 6px 0;
+  font-size: clamp(0.95rem, 1.25vw, 1.25rem);
+  animation: slideItemFadeIn var(--transition-normal) var(--ease) both;
+}
+
+.lint-row__x {
+  color: var(--terminal-orange);
+  font-weight: 700;
+  text-shadow: 0 0 10px var(--terminal-orange-glow);
+}
+
+.lint-row__bad {
+  color: var(--terminal-white);
+  flex: 0 0 38%;
+}
+
+.lint-row__arrow {
+  color: var(--terminal-white-muted);
+}
+
+.lint-row__fix {
+  color: var(--terminal-green);
+  flex: 1;
+}
+
+.lint-card__summary {
+  margin-top: var(--space-md);
+  color: var(--terminal-white-dim);
+  font-style: italic;
+  font-size: clamp(0.95rem, 1.2vw, 1.2rem);
+  animation: slideItemFadeIn var(--transition-normal) var(--ease) both;
+}
+
+/* === SIZE DISCIPLINE SLIDE === */
+
+.size-quote {
+  margin-top: var(--space-lg);
+  text-align: center;
+  color: var(--terminal-green);
+  font-size: clamp(1.5rem, 2.4vw, 2.4rem);
+  font-weight: 700;
+  text-shadow: 0 0 22px rgba(126, 231, 135, 0.45);
+  animation: slideItemFadeIn var(--transition-slow) var(--ease) both;
+}
+
+/* === OPEN FORMAT (AGENTSKILLS.IO) SLIDE === */
+
+.oa-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-lg);
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.oa-statement {
+  text-align: center;
+  font-size: clamp(1.25rem, 1.9vw, 1.9rem);
+  max-width: 26em;
+}
+
+.oa-wall {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm);
+  max-width: 1240px;
+  animation: slideItemFadeIn var(--transition-slow) var(--ease) both;
+}
+
+.oa-chip {
+  border: 1px solid var(--terminal-border-bright);
+  border-radius: var(--radius-card);
+  padding: 7px 18px;
+  color: var(--terminal-white-dim);
+  font-size: clamp(0.9rem, 1.15vw, 1.15rem);
+  white-space: nowrap;
+}
+
+.oa-chip--hero {
+  color: var(--terminal-orange);
+  font-weight: 700;
+  border-color: color-mix(in srgb, var(--terminal-orange) 55%, transparent);
+  box-shadow: 0 0 16px color-mix(in srgb, var(--terminal-orange) 20%, transparent);
+  text-shadow: 0 0 12px var(--terminal-orange-glow);
+}

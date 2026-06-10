@@ -15,7 +15,17 @@ import { BreakOutOfCodingSlide } from './BreakOutOfCodingSlide';
 import { ClaudeCodeSlide } from './ClaudeCodeSlide';
 import { OneMoreTipSlide } from './OneMoreTipSlide';
 import { WhatIsSkillSlide } from './WhatIsSkillSlide';
+import { SkillAnatomySlide } from './SkillAnatomySlide';
+import { SkillStructureSlide } from './SkillStructureSlide';
+import { SkillFrontmatterMapSlide } from './SkillFrontmatterMapSlide';
+import { SkillPatternsSlide } from './SkillPatternsSlide';
+import { SkillBecauseSlide } from './SkillBecauseSlide';
+import { SkillAntiPatternsSlide } from './SkillAntiPatternsSlide';
+import { SkillSizeSlide } from './SkillSizeSlide';
+import { SkillDeploymentSlide } from './SkillDeploymentSlide';
+import { SkillValidationSlide } from './SkillValidationSlide';
+import { SkillOpenFormatSlide } from './SkillOpenFormatSlide';
 import { LifeAfterCommitSlide } from './LifeAfterCommitSlide';
 import { FinalSlide } from './FinalSlide';
 
-export const slides = [TitleSlide, StarWarsCrawlSlide1, BioSlide, StarWarsCrawlSlide2, JuniorEngineerSlide, StarWarsCrawlSlide3, VibeFlowStepsSlide, StarWarsCrawlSlide4, BreakOutOfCodingSlide, LifeAfterCommitSlide, ClaudeCodeSlide, StarWarsCrawlSlide5, OneMoreTipSlide, StarWarsCrawlSlide6, WhatIsSkillSlide, StarWarsCrawlSlide7, MarketplacesSlide, StarWarsCrawlSlide8, FinalSlide];
+export const slides = [TitleSlide, StarWarsCrawlSlide1, BioSlide, StarWarsCrawlSlide2, JuniorEngineerSlide, StarWarsCrawlSlide3, VibeFlowStepsSlide, StarWarsCrawlSlide4, BreakOutOfCodingSlide, LifeAfterCommitSlide, ClaudeCodeSlide, StarWarsCrawlSlide5, OneMoreTipSlide, StarWarsCrawlSlide6, WhatIsSkillSlide, StarWarsCrawlSlide7, MarketplacesSlide, StarWarsCrawlSlide8, SkillAnatomySlide, SkillStructureSlide, SkillFrontmatterMapSlide, SkillPatternsSlide, SkillBecauseSlide, SkillAntiPatternsSlide, SkillSizeSlide, SkillDeploymentSlide, SkillValidationSlide, SkillOpenFormatSlide, FinalSlide];
