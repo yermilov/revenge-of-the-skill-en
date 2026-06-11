@@ -107,14 +107,17 @@
   text-shadow: 0 0 8px var(--terminal-cyan-glow);
 }
 
-.code-inline--orange {
+/* Element-qualified so the variants outrank `.slide code` in base.css
+ * (same specificity, later in the cascade). Without this the opt-in
+ * orange/green variants silently render as the default cyan. */
+code.code-inline--orange {
   background: rgba(240, 136, 62, 0.1);
   color: var(--terminal-orange);
   border-color: rgba(240, 136, 62, 0.3);
   text-shadow: 0 0 8px var(--terminal-orange-glow);
 }
 
-.code-inline--green {
+code.code-inline--green {
   background: rgba(126, 231, 135, 0.1);
   color: var(--terminal-green);
   border-color: rgba(126, 231, 135, 0.3);

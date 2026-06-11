@@ -25,7 +25,17 @@ import { SkillSizeSlide } from './SkillSizeSlide';
 import { SkillDeploymentSlide } from './SkillDeploymentSlide';
 import { SkillValidationSlide } from './SkillValidationSlide';
 import { SkillOpenFormatSlide } from './SkillOpenFormatSlide';
+import { MetaSkillSlide } from './MetaSkillSlide';
+import { SkillsActivatorSlide } from './SkillsActivatorSlide';
+import { SkillMarketplaceSlide } from './SkillMarketplaceSlide';
+import { EveryOrgRightNowSlide } from './EveryOrgRightNowSlide';
+import { SoftwareFactorySlide } from './SoftwareFactorySlide';
+import { WhatIsAiFirstTeamSlide } from './WhatIsAiFirstTeamSlide';
+import { SkillsPyramidSlide } from './SkillsPyramidSlide';
+import { SkillFlywheelSlide } from './SkillFlywheelSlide';
+import { AgentsSlide } from './AgentsSlide';
+import { AgentTracesSlide } from './AgentTracesSlide';
 import { LifeAfterCommitSlide } from './LifeAfterCommitSlide';
 import { FinalSlide } from './FinalSlide';
 
-export const slides = [TitleSlide, StarWarsCrawlSlide1, BioSlide, StarWarsCrawlSlide2, JuniorEngineerSlide, StarWarsCrawlSlide3, VibeFlowStepsSlide, StarWarsCrawlSlide4, BreakOutOfCodingSlide, LifeAfterCommitSlide, ClaudeCodeSlide, StarWarsCrawlSlide5, OneMoreTipSlide, StarWarsCrawlSlide6, WhatIsSkillSlide, StarWarsCrawlSlide7, MarketplacesSlide, StarWarsCrawlSlide8, SkillAnatomySlide, SkillStructureSlide, SkillFrontmatterMapSlide, SkillPatternsSlide, SkillBecauseSlide, SkillAntiPatternsSlide, SkillSizeSlide, SkillDeploymentSlide, SkillValidationSlide, SkillOpenFormatSlide, FinalSlide];
+export const slides = [TitleSlide, StarWarsCrawlSlide1, BioSlide, StarWarsCrawlSlide2, JuniorEngineerSlide, StarWarsCrawlSlide3, VibeFlowStepsSlide, StarWarsCrawlSlide4, BreakOutOfCodingSlide, LifeAfterCommitSlide, ClaudeCodeSlide, StarWarsCrawlSlide5, OneMoreTipSlide, StarWarsCrawlSlide6, WhatIsSkillSlide, StarWarsCrawlSlide7, MarketplacesSlide, StarWarsCrawlSlide8, SkillAnatomySlide, SkillStructureSlide, SkillFrontmatterMapSlide, SkillPatternsSlide, SkillBecauseSlide, SkillAntiPatternsSlide, SkillSizeSlide, SkillDeploymentSlide, SkillValidationSlide, SkillOpenFormatSlide, MetaSkillSlide, SkillsActivatorSlide, SkillMarketplaceSlide, EveryOrgRightNowSlide, SoftwareFactorySlide, WhatIsAiFirstTeamSlide, SkillsPyramidSlide, SkillFlywheelSlide, AgentsSlide, AgentTracesSlide, FinalSlide];
