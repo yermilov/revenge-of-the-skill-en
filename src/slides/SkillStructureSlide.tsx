@@ -14,9 +14,9 @@ interface TreeNode {
 
 const TREE_NODES: TreeNode[] = [
   { stage: 1, label: 'SKILL.md' },
-  { stage: 3, label: 'references/', children: ['spec.md', 'examples.md'] },
-  { stage: 4, label: 'scripts/', children: ['validate.mjs'] },
-  { stage: 5, label: 'templates/', children: ['report.html'] },
+  { stage: 5, label: 'references/', children: ['spec.md', 'examples.md'] },
+  { stage: 6, label: 'scripts/', children: ['validate.mjs'] },
+  { stage: 7, label: 'templates/', children: ['report.html'] },
 ];
 
 function buildTree(revealStage: number): string {
@@ -50,6 +50,22 @@ description: Escape a stuck vim session. Use when someone
 Press Esc, type :q! and hit Enter to exit without
 saving. You're free.`;
 
+// The next two beats stay inside the body to show it isn't just static prose:
+// a !\`command\` runs when the skill loads and its output is spliced in (live
+// branch, status) — then the caveat beat, since each runs at load and needs
+// per-user pre-approval that allowed-tools does NOT grant.
+const INLINE_STAGES = [3, 4];
+
+const SKILL_MD_INLINE = `# Commit Helper
+
+## Gather context
+
+Branch:  !\`git branch --show-current\`
+Changes: !\`git status --short\`
+
+Draft a Conventional Commits message for the
+changes shown above.`;
+
 const BULLETS: ReactNode[] = [
   <>
     skills are distributed as <Emphasis color="green">directories</Emphasis>
@@ -62,6 +78,15 @@ const BULLETS: ReactNode[] = [
     at startup the model loads into context only{' '}
     <Emphasis color="green">descriptions</Emphasis>, the body loads on
     request, one file (in some cases one section) at a time as needed
+  </>,
+  <>
+    the body can <Emphasis color="green">inline a command</Emphasis> at load —
+    live context like <Code>git status</Code> or a version
+  </>,
+  <>
+    <Emphasis color="orange">careful:</Emphasis> it runs at load and needs{' '}
+    <Emphasis color="orange">per-user pre-approval</Emphasis> — and if the
+    command fails, the <Emphasis color="orange">whole skill load fails</Emphasis>
   </>,
   <>
     <Code>references/</Code> — extra knowledge, read only when the
@@ -115,6 +140,12 @@ export const SkillStructureSlide: SlideDefinition = {
               filename="cat quit-vim/SKILL.md"
               code={SKILL_MD}
             />
+          ) : INLINE_STAGES.includes(revealStage) ? (
+            <CodeBlock
+              language="markdown"
+              filename="cat commit-helper/SKILL.md"
+              code={SKILL_MD_INLINE}
+            />
           ) : (
             <CodeBlock
               language="bash"
@@ -140,5 +171,5 @@ export const SkillStructureSlide: SlideDefinition = {
   maxRevealStages: BULLETS.length - 1,
   initialRevealStage: 0,
   notes:
-    'Skill directory structure. A skill is distributed as a directory. Only SKILL.md is required (frontmatter name+description, body instructions). Progressive disclosure: description at startup → body on activation → bundled files on demand. references/ read only on explicit pointer; scripts run with only their output entering context; other dirs named by domain purpose, spec prescribes nothing.',
+    'Skill directory structure. A skill is distributed as a directory. Only SKILL.md is required (frontmatter name+description, body instructions). Progressive disclosure: description at startup → body on activation → bundled files on demand. The body can inline a command (!`cmd`) that runs at load so its output (live branch, git status, versions) is spliced into context — only the output, not the command. Caveat: each inline command runs at load time and needs per-user pre-approval in .claude/settings.json (allowed-tools does NOT cover it), and if any inline command fails the entire skill fails to load — prefer a Gather-context step with normal Bash calls for shared skills. references/ read only on explicit pointer; scripts run with only their output entering context; other dirs named by domain purpose, spec prescribes nothing.',
 };

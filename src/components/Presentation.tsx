@@ -168,6 +168,11 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
       ? activeSlide.content({ revealStage, inputText })
       : activeSlide.content;
 
+  const slideTitle =
+    typeof activeSlide.title === 'function'
+      ? activeSlide.title({ revealStage, inputText })
+      : activeSlide.title;
+
   return (
     <NavigationContext.Provider value={{ goToSlideById }}>
     <div className="presentation">
@@ -179,7 +184,7 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
           background={activeSlide.background}
           slideId={activeSlide.id}
           asyncSettle={activeSlide.asyncSettle}
-          title={activeSlide.title}
+          title={slideTitle}
         >
           {slideContent}
         </Slide>

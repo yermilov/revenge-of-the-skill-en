@@ -8,10 +8,11 @@ export interface SlideContentProps {
 export interface SlideDefinition {
   id: string;
   content: ReactNode | ((props: SlideContentProps) => ReactNode);
-  /** Optional fixed top-left title rendered by Slide.tsx. Use `//` prefix
+  /** Optional top-left title rendered by Slide.tsx. Use `//` prefix
    * convention for the dim leader (matches dou-days deck). Omit for hero
-   * / section-break slides that own their full composition. */
-  title?: ReactNode;
+   * / section-break slides that own their full composition. Pass a function
+   * to derive the title from reveal state (e.g. a per-section subtitle). */
+  title?: ReactNode | ((props: SlideContentProps) => ReactNode);
   notes?: string;
   background?: string;
   /** Optional contextual tooltip shown next to the slide (ported from pragmatic-vibe-clauding-ua). */
