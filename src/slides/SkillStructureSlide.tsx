@@ -13,15 +13,15 @@ interface TreeNode {
 }
 
 const TREE_NODES: TreeNode[] = [
-  { stage: 0, label: 'SKILL.md' },
-  { stage: 2, label: 'references/', children: ['spec.md', 'examples.md'] },
-  { stage: 3, label: 'scripts/', children: ['validate.mjs'] },
-  { stage: 4, label: 'templates/', children: ['report.html'] },
+  { stage: 1, label: 'SKILL.md' },
+  { stage: 3, label: 'references/', children: ['spec.md', 'examples.md'] },
+  { stage: 4, label: 'scripts/', children: ['validate.mjs'] },
+  { stage: 5, label: 'templates/', children: ['report.html'] },
 ];
 
 function buildTree(revealStage: number): string {
   const nodes = TREE_NODES.filter((n) => revealStage >= n.stage);
-  const lines = ['my-skill/'];
+  const lines = ['quit-vim/'];
   nodes.forEach((node, i) => {
     const isLast = i === nodes.length - 1;
     lines.push((isLast ? '└── ' : '├── ') + node.label);
@@ -34,23 +34,41 @@ function buildTree(revealStage: number): string {
   return lines.join('\n');
 }
 
+// The progressive-disclosure bullet is about what lives in SKILL.md, so at
+// that stage the left panel zooms from the tree into the file itself: the
+// frontmatter (name + description) the model sees at startup, then the body.
+const PROGRESSIVE_DISCLOSURE_STAGE = 2;
+
+const SKILL_MD = `---
+name: quit-vim
+description: Escape a stuck vim session. Use when someone
+  is trapped in vim and can't get back to the shell.
+---
+
+# Quit Vim
+
+Press Esc, type :q! and hit Enter to exit without
+saving. You're free.`;
+
 const BULLETS: ReactNode[] = [
+  <>
+    skills are distributed as <Emphasis color="green">directories</Emphasis>
+  </>,
   <>
     <Code>SKILL.md</Code> is the <Emphasis color="orange">only required file</Emphasis>{' '}
     — everything else is optional
   </>,
   <>
-    progressive disclosure: at startup the model sees only the{' '}
-    <Emphasis color="green">description</Emphasis>, the body loads on
-    activation, bundled files — on demand
+    at startup the model loads into context only{' '}
+    <Emphasis color="green">descriptions</Emphasis>, the body loads on
+    request, one file (in some cases one section) at a time as needed
   </>,
   <>
     <Code>references/</Code> — extra knowledge, read only when the
     instructions say <Emphasis color="green">read X when Y</Emphasis>
   </>,
   <>
-    <Code>scripts/</Code> — their <Emphasis color="orange">output</Emphasis>{' '}
-    enters the context, their <Emphasis color="orange">code never does</Emphasis>
+    <Code>scripts/</Code> — it can contain TypeScript / Python / bash scripts for deterministic automation
   </>,
   <>
     directory names aren't prescribed — name them after their{' '}
@@ -88,13 +106,22 @@ export const SkillStructureSlide: SlideDefinition = {
           overflow: 'hidden',
         }}
       >
-        {/* Left — the specimen: directory tree in a terminal window */}
+        {/* Left — the specimen: the directory tree, or (on the progressive-
+            disclosure beat) the SKILL.md file it zooms into */}
         <div style={{ flex: '0 1 auto', minWidth: 0 }}>
-          <CodeBlock
-            language="bash"
-            filename="tree .claude/skills/my-skill"
-            code={buildTree(revealStage)}
-          />
+          {revealStage === PROGRESSIVE_DISCLOSURE_STAGE ? (
+            <CodeBlock
+              language="markdown"
+              filename="cat quit-vim/SKILL.md"
+              code={SKILL_MD}
+            />
+          ) : (
+            <CodeBlock
+              language="bash"
+              filename="tree .claude/skills/quit-vim"
+              code={buildTree(revealStage)}
+            />
+          )}
         </div>
 
         {/* Right — the dissection notes */}
@@ -113,5 +140,5 @@ export const SkillStructureSlide: SlideDefinition = {
   maxRevealStages: BULLETS.length - 1,
   initialRevealStage: 0,
   notes:
-    'Skill directory structure. Only SKILL.md is required (frontmatter name+description, body instructions). Progressive disclosure: description at startup → body on activation → bundled files on demand. references/ read only on explicit pointer; scripts run with only their output entering context; other dirs named by domain purpose, spec prescribes nothing.',
+    'Skill directory structure. A skill is distributed as a directory. Only SKILL.md is required (frontmatter name+description, body instructions). Progressive disclosure: description at startup → body on activation → bundled files on demand. references/ read only on explicit pointer; scripts run with only their output entering context; other dirs named by domain purpose, spec prescribes nothing.',
 };

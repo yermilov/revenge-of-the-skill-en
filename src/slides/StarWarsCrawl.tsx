@@ -28,22 +28,17 @@ function StarField() {
 const PARAGRAPHS = [
   <>Two weeks ago, Yaroslav Yermilov presented the Pragmatic Vibe Clauding
     session.</>,
-  <>Claude Code is your teammate — you mentor it on its first day (maybe not
-    even one), so just talk to it in the terminal.</>,
+  <>Claude Code is your teammate (maybe not
+    even one) — you mentor it on its first day, so just talk to it in the terminal.</>,
   <>Find your own vibe coding flow. Focus on building the right task context
     for the agent.</>,
   <>Set yourself a goal: do everything (not just coding) from within Claude
     Code — especially the feedback loops.</>,
-  <>Claude Code increases the volume of work, not the speed.</>,
   <>If you catch yourself instructing Claude to do the same thing over and over
     — searching logs, debugging issues, optimizing performance, generating
-    images, writing documentation — teach it that skill. Skills are building
-    blocks each engineer (or agent) can assemble into their own workflow. People
-    hate reading and writing documentation, but agents love it, so convert all
-    your docs into skills.</>,
-  <>Every engineer who uses a skill from the internal marketplace adds
-    improvements — and everyone gets more productive.</>,
-  <>You just need the right infrastructure to make skills your foundation.</>,
+    images, writing documentation — teach it that skill.</>,
+  <>Skills are distributed via plugins on marketplaces.</>,
+  <>All you need is the right infrastructure to make skills your foundation.</>,
 ];
 
 interface StarWarsCrawlProps {

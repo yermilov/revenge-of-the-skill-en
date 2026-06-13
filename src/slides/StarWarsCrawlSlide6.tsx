@@ -10,5 +10,5 @@ const SPACE_BG = `
 export const StarWarsCrawlSlide6: SlideDefinition = {
   id: 'star-wars-crawl-6',
   background: SPACE_BG,
-  content: <StarWarsCrawl highlighted={6} />,
+  content: <StarWarsCrawl highlighted={5} />,
 };
