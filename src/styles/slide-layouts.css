@@ -2319,166 +2319,61 @@
 
 
 /* === INSTRUCTIONS VS KNOWLEDGE SLIDE === */
-/* Two-panel duel: each card carries an accent (--iv-accent), reveals its
- * phrasing quote and headline stat per stage, verdict bar closes the slide. */
+/* Two columns built in sequence: the green "instructions" facts reveal one
+ * by one, then the orange "knowledge" facts. Each column carries its own
+ * accent (--ivk-accent); a verdict line spans both at the end. */
 
-.iv-duel {
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-  gap: var(--space-lg);
+.ivk-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
+  align-items: start;
 }
 
-.iv-card {
-  flex: 1 1 0;
+.ivk-col {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: var(--space-sm);
-  padding: var(--space-md);
+  gap: var(--space-md);
+  padding: var(--space-lg);
   background: var(--terminal-bg-elevated);
-  border: 1px solid color-mix(in srgb, var(--iv-accent) 40%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ivk-accent) 40%, transparent);
   border-radius: var(--radius-card);
-  box-shadow: 0 0 22px color-mix(in srgb, var(--iv-accent) 10%, transparent);
-  text-align: center;
-  animation: slideItemFadeIn var(--transition-slow) var(--ease) both;
-}
-
-.iv-card__name {
-  color: var(--iv-accent);
-  font-size: clamp(1.4rem, 2.2vw, 2.2rem);
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-shadow: 0 0 16px color-mix(in srgb, var(--iv-accent) 45%, transparent);
-}
-
-.iv-card__def {
-  color: var(--terminal-white);
-  font-size: clamp(0.95rem, 1.25vw, 1.25rem);
-  max-width: 44ch;
-}
-
-.iv-card__quote {
-  color: var(--terminal-cyan);
-  font-style: italic;
-  font-size: clamp(1.05rem, 1.5vw, 1.5rem);
-  text-shadow: 0 0 12px var(--terminal-cyan-glow);
-  animation: slideItemFadeIn var(--transition-normal) var(--ease) both;
-}
-
-.iv-vs {
-  align-self: center;
-  color: var(--terminal-white-muted);
-  font-size: clamp(1.2rem, 1.8vw, 1.8rem);
-  font-weight: 700;
-  letter-spacing: 0.1em;
-}
-
-.iv-verdict {
-  margin-top: var(--space-lg);
-  text-align: center;
-  font-size: clamp(1.05rem, 1.5vw, 1.5rem);
-  color: var(--terminal-white);
-  animation: slideItemFadeIn var(--transition-normal) var(--ease) both;
-}
-
-.iv-verdict__footnote {
-  margin-top: var(--space-sm);
-  color: var(--terminal-white-muted);
-  font-size: clamp(0.85rem, 1.05vw, 1.05rem);
-}
-
-/* Subcategory pills inside each duel card — the remaining three patterns
- * embedded as flavors of the two main families. */
-.iv-card__subs {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-sm);
-  animation: slideItemFadeIn var(--transition-normal) var(--ease) both;
-}
-
-.iv-sub {
-  border: 1px dashed color-mix(in srgb, var(--iv-accent) 40%, transparent);
-  border-radius: var(--radius-card);
-  padding: 4px 14px;
-  color: var(--terminal-white-dim);
-  font-size: clamp(0.8rem, 1vw, 1rem);
-  white-space: nowrap;
-}
-
-.iv-sub__name {
-  color: var(--iv-accent);
-  font-weight: 700;
-}
-
-
-/* === SKILL-LINT SLIDE === */
-/* Mock linter run: terminal card, findings revealed row by row. */
-
-.lint-card {
-  width: 100%;
-  max-width: 1360px;
-  margin: 0 auto;
-  padding: var(--space-md) var(--space-lg);
-  background: var(--terminal-bg-elevated);
-  border: 1px solid var(--terminal-border-bright);
-  border-radius: var(--radius-card);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 22px color-mix(in srgb, var(--ivk-accent) 10%, transparent);
   text-align: left;
 }
 
-.lint-card__cmd {
-  color: var(--terminal-green);
-  text-shadow: var(--glow-text-green);
-  font-size: clamp(1rem, 1.3vw, 1.3rem);
-  margin-bottom: var(--space-md);
-}
-
-.lint-card__cmd::before {
-  content: '$ ';
-  color: var(--terminal-white-dim);
-}
-
-.lint-row {
-  display: flex;
-  align-items: baseline;
-  gap: var(--space-sm);
-  padding: 6px 0;
-  font-size: clamp(0.95rem, 1.25vw, 1.25rem);
-  animation: slideItemFadeIn var(--transition-normal) var(--ease) both;
-}
-
-.lint-row__x {
-  color: var(--terminal-orange);
+.ivk-col__head {
+  color: var(--ivk-accent);
+  font-size: clamp(1.5rem, 2.2vw, 2.2rem);
   font-weight: 700;
-  text-shadow: 0 0 10px var(--terminal-orange-glow);
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-shadow: 0 0 16px color-mix(in srgb, var(--ivk-accent) 45%, transparent);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid color-mix(in srgb, var(--ivk-accent) 25%, transparent);
 }
 
-.lint-row__bad {
+.ivk-item {
+  position: relative;
+  padding-left: 1.5em;
   color: var(--terminal-white);
-  flex: 0 0 38%;
-}
-
-.lint-row__arrow {
-  color: var(--terminal-white-muted);
-}
-
-.lint-row__fix {
-  color: var(--terminal-green);
-  flex: 1;
-}
-
-.lint-card__summary {
-  margin-top: var(--space-md);
-  color: var(--terminal-white-dim);
-  font-style: italic;
-  font-size: clamp(0.95rem, 1.2vw, 1.2rem);
+  font-size: clamp(1rem, 1.3vw, 1.3rem);
+  line-height: 1.45;
   animation: slideItemFadeIn var(--transition-normal) var(--ease) both;
 }
+
+.ivk-item::before {
+  content: '>';
+  position: absolute;
+  left: 0;
+  color: var(--ivk-accent);
+  font-weight: 700;
+}
+
+
 
 /* === SIZE DISCIPLINE SLIDE === */
 

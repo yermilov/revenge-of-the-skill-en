@@ -1,4 +1,22 @@
+import { ReactNode } from 'react';
 import { SlideDefinition } from '../types/slides';
+
+// Left column — instruction skills (the default). Revealed one fact per stage.
+const INSTRUCTIONS: ReactNode[] = [
+  <>step-by-step guide how to do something</>,
+  <>more often invokable by user than by model</>,
+  <>if there are more than 4-6 steps, use Todo/Tasks capability to keep track on what to do</>,
+];
+
+// Right column — knowledge skills. Revealed only after every instruction fact.
+const KNOWLEDGE: ReactNode[] = [
+  <>facts the model don't know - most often about your internal specifics</>,
+  <>or gotchas for common mistakes model makes</>,
+  <>more often invokable by model than by user</>,
+];
+
+const KNOWLEDGE_START = INSTRUCTIONS.length;
+const LAST_STAGE = INSTRUCTIONS.length + KNOWLEDGE.length - 1;
 
 export const SkillPatternsSlide: SlideDefinition = {
   id: 'skill-patterns',
@@ -7,7 +25,8 @@ export const SkillPatternsSlide: SlideDefinition = {
       <span className="text-dim">&gt;</span>{' '}
       <span className="text-green">instructions</span>{' '}
       <span className="text-dim">vs</span>{' '}
-      <span className="text-orange">knowledge</span>
+      <span className="text-green">knowledge</span>{' '}
+      <span className="text-orange">skills</span>
     </>
   ),
   content: ({ revealStage }) => (
@@ -21,62 +40,41 @@ export const SkillPatternsSlide: SlideDefinition = {
         overflow: 'hidden',
       }}
     >
-      <div className="iv-duel">
+      <div className="ivk-grid">
+        {/* Left — instructions (green), built first */}
         <div
-          className="iv-card"
-          style={{ '--iv-accent': 'var(--terminal-green)' } as React.CSSProperties}
+          className="ivk-col"
+          style={{ '--ivk-accent': 'var(--terminal-green)' } as React.CSSProperties}
         >
-          <div className="iv-card__name">instruction runner</div>
-          <div className="iv-card__def">
-            a workflow — numbered steps, decision points, feedback loops
-          </div>
-          {revealStage >= 1 && <div className="iv-card__quote">“do X because Y”</div>}
-          {revealStage >= 2 && (
-            <div className="iv-card__subs">
-              <div className="iv-sub">
-                <span className="iv-sub__name">tool automation</span> — exact CLI
-                commands
+          <div className="ivk-col__head">instructions</div>
+          {INSTRUCTIONS.map((fact, i) =>
+            revealStage >= i ? (
+              <div key={i} className="ivk-item">
+                {fact}
               </div>
-              <div className="iv-sub">
-                <span className="iv-sub__name">meta</span> — skills about skills
-              </div>
-            </div>
+            ) : null,
           )}
         </div>
 
-        <div className="iv-vs">vs</div>
-
+        {/* Right — knowledge (orange), built after the left column completes */}
         <div
-          className="iv-card"
-          style={{ '--iv-accent': 'var(--terminal-orange)' } as React.CSSProperties}
+          className="ivk-col"
+          style={{ '--ivk-accent': 'var(--terminal-orange)' } as React.CSSProperties}
         >
-          <div className="iv-card__name">knowledge reference</div>
-          <div className="iv-card__def">
-            facts the model can’t derive — SKILL.md routes to reference files
-          </div>
-          {revealStage >= 1 && <div className="iv-card__quote">“here is how X works”</div>}
-          {revealStage >= 2 && (
-            <div className="iv-card__subs">
-              <div className="iv-sub">
-                <span className="iv-sub__name">creative / generative</span> — taste
-                by exclusion
+          <div className="ivk-col__head">knowledge</div>
+          {KNOWLEDGE.map((fact, j) =>
+            revealStage >= KNOWLEDGE_START + j ? (
+              <div key={j} className="ivk-item">
+                {fact}
               </div>
-            </div>
+            ) : null,
           )}
         </div>
       </div>
-
-      {revealStage >= 2 && (
-        <div className="iv-verdict">
-          default to <span className="text-green glow-green">instructions</span> — add
-          knowledge only when the model would{' '}
-          <span className="text-orange glow-orange">genuinely get it wrong</span>
-        </div>
-      )}
     </div>
   ),
-  maxRevealStages: 2,
+  maxRevealStages: LAST_STAGE,
   initialRevealStage: 0,
   notes:
-    'Two main skill patterns from skill-dev Phase 2. Pattern A — Instruction Runner (the default): multi-step workflow with decision points and feedback loops, written as "do X because Y". Pattern B — Knowledge Reference: domain knowledge the model can\'t derive, SKILL.md routes to reference files; only justified when Claude would genuinely get it wrong — unnecessary knowledge dumps actively degrade performance. Decision tree: multi-step → A; knowledge gaps → B (inline under A when possible). The other three patterns embed as flavors of the two families: tool automation (exact CLI commands, low freedom) and meta (skills about skills) are instruction-shaped; creative/generative (aesthetic constraints, taste by exclusion) is knowledge-shaped.',
+    'Two main skill patterns from skill-dev Phase 2, built column by column. Instructions (the default): a multi-step workflow — numbered steps, decision points, feedback loops — written as "do X because Y" so the reason lets the model generalize; instruction-style content beats knowledge dumps by +16.2pp; tool automation (exact CLI commands) and meta (skills about skills) are instruction-shaped. Knowledge: facts the model can\'t derive, SKILL.md routes to reference files, reads as "here is how X works"; only justified when the model would genuinely get it wrong (unnecessary dumps degrade ~1.3pp); prefer runtime retrieval over static inclusion (3x accuracy, ~50% fewer tokens); creative/generative is knowledge-shaped.',
 };

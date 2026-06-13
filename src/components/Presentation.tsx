@@ -173,6 +173,17 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
       ? activeSlide.title({ revealStage, inputText })
       : activeSlide.title;
 
+  // Progress bar weights every reveal across the deck equally: each slide
+  // contributes (maxRevealStages + 1) units, so a slide with eight reveals
+  // fills more of the bar than a single-shot slide. Consumed = all prior
+  // slides in full + the current reveal stage within this slide.
+  const revealUnits = slides.map((s) => (s.maxRevealStages ?? 0) + 1);
+  const totalUnits = revealUnits.reduce((sum, u) => sum + u, 0);
+  const consumedUnits =
+    revealUnits.slice(0, currentSlide).reduce((sum, u) => sum + u, 0) +
+    Math.min(revealStage, activeSlide.maxRevealStages ?? 0) +
+    1;
+
   return (
     <NavigationContext.Provider value={{ goToSlideById }}>
     <div className="presentation">
@@ -204,8 +215,8 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
             placeholder="type anything to continue, 'prev' to go back, or slide number..."
           />
           <SlideProgress
-            current={currentSlide + 1}
-            total={slides.length}
+            current={consumedUnits}
+            total={totalUnits}
             isFirst={currentSlide === Math.floor(slides.length / 2)}
             hidden={(currentSlide + 1) / slides.length <= 0.5}
           />
