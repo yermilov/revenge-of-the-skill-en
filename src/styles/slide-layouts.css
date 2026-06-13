@@ -2388,48 +2388,136 @@
 }
 
 /* === OPEN FORMAT (AGENTSKILLS.IO) SLIDE === */
+/* Left: one SKILL.md, the portable open core (bright) vs the Claude-Code-only
+ * frontmatter (dim orange). Right: rules for keeping a skill portable. */
 
-.oa-wrap {
+.of-wrap {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--space-lg);
+  gap: var(--space-2xl);
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
   height: 100%;
   min-height: 0;
   overflow: hidden;
 }
 
-.oa-statement {
-  text-align: center;
-  font-size: clamp(1.25rem, 1.9vw, 1.9rem);
-  max-width: 26em;
-}
-
-.oa-wall {
+.of-left {
+  flex: 0 1 auto;
+  min-width: 0;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
   gap: var(--space-sm);
-  max-width: 1240px;
-  animation: slideItemFadeIn var(--transition-slow) var(--ease) both;
 }
 
-.oa-chip {
-  border: 1px solid var(--terminal-border-bright);
-  border-radius: var(--radius-card);
-  padding: 7px 18px;
-  color: var(--terminal-white-dim);
-  font-size: clamp(0.9rem, 1.15vw, 1.15rem);
-  white-space: nowrap;
+.of-spec {
+  border-radius: var(--input-border-radius);
+  overflow: hidden;
+  border: 1px solid var(--terminal-border);
+  background: var(--terminal-bg-secondary);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.45);
 }
 
-.oa-chip--hero {
+.of-spec__head {
+  background: var(--terminal-bg-elevated);
+  padding: var(--space-sm) var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  border-bottom: 1px solid var(--terminal-border);
+}
+
+.of-spec__dots {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.of-spec__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.of-spec__dot--red { background: #ff5f56; }
+.of-spec__dot--yellow { background: #ffbd2e; }
+.of-spec__dot--green { background: #27c93f; }
+
+.of-spec__filename {
+  flex: 1;
+  color: var(--terminal-white-muted);
+  font-size: var(--font-size-small);
+  font-family: var(--font-mono);
+  text-align: center;
+}
+
+.of-spec__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding: var(--space-md) var(--space-lg);
+}
+
+.of-line {
+  font-family: var(--font-mono);
+  font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+  line-height: 1.55;
+  white-space: pre;
+}
+
+.of-line--core {
+  color: var(--terminal-white);
+}
+
+.of-line--claude {
   color: var(--terminal-orange);
-  font-weight: 700;
-  border-color: color-mix(in srgb, var(--terminal-orange) 55%, transparent);
-  box-shadow: 0 0 16px color-mix(in srgb, var(--terminal-orange) 20%, transparent);
-  text-shadow: 0 0 12px var(--terminal-orange-glow);
+  opacity: 0.55;
+}
+
+.of-line--note {
+  color: var(--terminal-orange);
+  opacity: 0.45;
+  font-style: italic;
+}
+
+.of-legend {
+  display: flex;
+  gap: var(--space-lg);
+  padding-left: var(--space-sm);
+  font-size: clamp(0.8rem, 1vw, 1rem);
+}
+
+.of-legend__item {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  color: var(--terminal-white-dim);
+}
+
+.of-legend__item::before {
+  content: '';
+  width: 0.85em;
+  height: 0.85em;
+  border-radius: 3px;
+}
+
+.of-legend__item--core::before { background: var(--terminal-white); }
+.of-legend__item--claude::before {
+  background: color-mix(in srgb, var(--terminal-orange) 55%, transparent);
+}
+
+.of-ref {
+  padding-left: var(--space-sm);
+  color: var(--terminal-white-muted);
+  font-size: clamp(0.85rem, 1.05vw, 1.05rem);
+}
+
+.of-right {
+  flex: 1 1 46%;
+  max-width: 700px;
+  text-align: left;
 }
 
 /* === META SKILL — two-stage body ==========================================
