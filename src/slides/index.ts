@@ -36,11 +36,10 @@ import { PluginShippingSlide } from './PluginShippingSlide';
 import { PluginDevSkillSlide } from './PluginDevSkillSlide';
 import { HowItWorksTogetherSlide } from './HowItWorksTogetherSlide';
 import { SoftwareFactorySlide } from './SoftwareFactorySlide';
-import { WhatIsAiFirstTeamSlide } from './WhatIsAiFirstTeamSlide';
 import { SkillsPyramidSlide } from './SkillsPyramidSlide';
 import { SkillFlywheelSlide } from './SkillFlywheelSlide';
 import { AgentsSlide } from './AgentsSlide';
 import { AgentTracesSlide } from './AgentTracesSlide';
 import { FinalSlide } from './FinalSlide';
 
-export const slides = [TitleSlide, StarWarsCrawlSlide1, BioSlide, StarWarsCrawlSlide2, JuniorEngineerSlide, StarWarsCrawlSlide3, VibeFlowStepsSlide, StarWarsCrawlSlide4, BreakOutOfCodingSlide, ClaudeCodeSlide, StarWarsCrawlSlide6, WhatIsSkillSlide, StarWarsCrawlSlide7, MarketplacesSlide, StarWarsCrawlSlide8, SkillAnatomySlide, SkillStructureSlide, SkillFrontmatterMapSlide, SkillPatternsSlide, SkillBecauseSlide, SkillAntiPatternsSlide, SkillOpenFormatSlide, MetaSkillSlide, SkillsActivatorSlide, HookAnatomySlide, HookConfigSlide, HookContractSlide, HookGotchasSlide, HookDevSkillSlide, SkillMarketplaceSlide, PluginAnatomySlide, PluginManifestSlide, MarketplaceManifestSlide, PluginDiscoverabilitySlide, PluginShippingSlide, PluginDevSkillSlide, HowItWorksTogetherSlide, SoftwareFactorySlide, WhatIsAiFirstTeamSlide, SkillsPyramidSlide, SkillFlywheelSlide, AgentsSlide, AgentTracesSlide, FinalSlide];
+export const slides = [TitleSlide, StarWarsCrawlSlide1, BioSlide, StarWarsCrawlSlide2, JuniorEngineerSlide, StarWarsCrawlSlide3, VibeFlowStepsSlide, StarWarsCrawlSlide4, BreakOutOfCodingSlide, ClaudeCodeSlide, StarWarsCrawlSlide6, WhatIsSkillSlide, StarWarsCrawlSlide7, MarketplacesSlide, StarWarsCrawlSlide8, SkillAnatomySlide, SkillStructureSlide, SkillFrontmatterMapSlide, SkillPatternsSlide, SkillsPyramidSlide, SkillBecauseSlide, SkillAntiPatternsSlide, SkillOpenFormatSlide, MetaSkillSlide, SkillsActivatorSlide, HookAnatomySlide, HookConfigSlide, HookContractSlide, HookGotchasSlide, HookDevSkillSlide, SkillMarketplaceSlide, PluginAnatomySlide, PluginManifestSlide, MarketplaceManifestSlide, PluginDiscoverabilitySlide, PluginShippingSlide, PluginDevSkillSlide, HowItWorksTogetherSlide, SoftwareFactorySlide, SkillFlywheelSlide, AgentsSlide, AgentTracesSlide, FinalSlide];
