@@ -204,8 +204,7 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
         <div className="input-bar">
           <Timer
             elapsedSeconds={timerSeconds}
-            currentSlide={currentSlide}
-            totalSlides={slides.length}
+            progress={totalUnits > 0 ? consumedUnits / totalUnits : 0}
           />
           <TerminalInput
             onCommand={handleCommand}
