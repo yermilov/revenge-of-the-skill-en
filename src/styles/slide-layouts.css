@@ -2387,6 +2387,14 @@
   animation: slideItemFadeIn var(--transition-slow) var(--ease) both;
 }
 
+/* skills-activator title is long; cap it below the global h2 size and keep
+ * it on one line so it can't wrap into the body and hide the panel border. */
+.sa-title {
+  display: inline-block;
+  white-space: nowrap;
+  font-size: clamp(1.5rem, 3.3vw, 3.4rem);
+}
+
 /* === OPEN FORMAT (AGENTSKILLS.IO) SLIDE === */
 /* Left: one SKILL.md, the portable open core (bright) vs the Claude-Code-only
  * frontmatter (dim orange). Right: rules for keeping a skill portable. */
