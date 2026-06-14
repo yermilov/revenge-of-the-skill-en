@@ -2712,32 +2712,19 @@
   animation: metaSkillPanelIn 480ms var(--ease) both;
 }
 
-.skills-activator-panel__chrome {
-  padding: 10px 18px;
-  font-size: var(--font-size-small);
-  letter-spacing: var(--letter-spacing-wide);
-  color: color-mix(in srgb, var(--terminal-green) 60%, transparent);
-  text-shadow: 0 0 8px var(--terminal-green-glow);
-  flex-shrink: 0;
-}
-.skills-activator-panel__chrome--top {
-  border-bottom: 1px solid color-mix(in srgb, var(--terminal-green) 22%, transparent);
-}
-.skills-activator-panel__chrome--bottom {
-  border-top: 1px solid color-mix(in srgb, var(--terminal-green) 22%, transparent);
-  color: color-mix(in srgb, var(--terminal-green) 35%, transparent);
-  letter-spacing: 0.12em;
-}
-
 .skills-activator-panel__viewport {
   flex: 1 1 auto;
   min-height: 0;
   overflow: hidden;
   display: flex;
+  /* Chrome bars used to provide the inset from the rounded panel edge; with
+   * them gone, center the code so it never touches the border. */
+  align-items: center;
+  padding: var(--space-sm) 0;
 }
 
 .skills-activator-panel__viewport .code-block {
-  flex: 1 1 auto;
+  flex: 0 1 auto;
   margin: 0;
   border: 0;
   border-radius: 0;

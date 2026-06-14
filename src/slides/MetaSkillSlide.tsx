@@ -26,10 +26,10 @@ const FIRST_SET: ReactNode[] = [
   </>,
   <>
     run deep research on the best practices, feed Claude <SlideLink href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices">
-      https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices
-    </SlideLink> and <SlideLink href="https://agentskills.io/skill-creation/best-practices">
-      https://agentskills.io/skill-creation/best-practices
-    </SlideLink>, and ask Claude to{' '}
+      platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices
+    </SlideLink>, <SlideLink href="https://agentskills.io/skill-creation/best-practices">
+      agentskills.io/skill-creation/best-practices
+    </SlideLink>, and this presentation; ask Claude to{' '}
     <Emphasis color="green">create a skill how to create skills</Emphasis>
   </>,
   <>
@@ -43,7 +43,7 @@ const SECOND_SET: ReactNode[] = [
     or just grab the <Emphasis color="green">prebuilt</Emphasis> skill-creator from
     Anthropic:{' '}
     <SlideLink href="https://github.com/anthropics/claude-plugins-official/tree/main/plugins/skill-creator">
-      github.com/anthropics/claude-plugins-official
+      github.com/anthropics/claude-plugins-official/tree/main/plugins/skill-creator
     </SlideLink>
   </>,
   <>

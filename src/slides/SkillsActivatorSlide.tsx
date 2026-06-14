@@ -94,7 +94,7 @@ function SkillsActivatorContent({ revealStage }: { revealStage: number }) {
 
         {revealStage === 1 && (
           <SlideItem delay={0} reveal>
-            so we built a <Emphasis color="green">skills-activator</Emphasis> — in{' '}
+            you can build a <Emphasis color="green">skills-activator</Emphasis> — in{' '}
             <Emphasis color="orange">SKILL.md</Emphasis> we describe activation
             rules: keywords, tool-call patterns, directories
           </SlideItem>
@@ -132,14 +132,8 @@ function SkillsActivatorContent({ revealStage }: { revealStage: number }) {
       {/* Right column: framed panel — appears from stage 1 onwards. */}
       {panel && (
         <div className="skills-activator-panel" key={panel.key}>
-          <div className="skills-activator-panel__chrome skills-activator-panel__chrome--top">
-            ░░░ {panel.label} ░░░
-          </div>
           <div className="skills-activator-panel__viewport">
             <CodeBlock language={panel.language} code={panel.code} />
-          </div>
-          <div className="skills-activator-panel__chrome skills-activator-panel__chrome--bottom">
-            [END OF TRANSMISSION]
           </div>
         </div>
       )}
@@ -152,7 +146,7 @@ export const SkillsActivatorSlide: SlideDefinition = {
   title: (
     <>
       <span className="text-dim">&gt;</span>{' '}
-      <span className="text-green">the key piece —</span>{' '}
+      <span className="text-green">customization example —</span>{' '}
       <span className="text-orange">skills activator</span>
     </>
   ),
