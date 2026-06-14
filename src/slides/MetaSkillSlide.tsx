@@ -13,19 +13,28 @@ const SKILL_MD_URL =
 // Set 2 = the prebuilt-vs-custom counterpoint + the live SKILL.md panel.
 const FIRST_SET: ReactNode[] = [
   <>
-    the most important skill in your marketplace is the{' '}
-    <Emphasis color="orange">skill that creates skills</Emphasis>
+    GOT YOU!{' '}
+    <Emphasis color="orange">NO</Emphasis>
   </>,
   <>
-    its quality determines the quality of <Emphasis color="orange">every</Emphasis>{' '}
-    skill in your marketplace
+    well, to be honest, you need{' '}
+    <Emphasis color="green">to be aware</Emphasis>
   </>,
   <>
-    make Claude read{' '}
-    <SlideLink href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices">
+    remember what we've learned last time?{' '}
+    <Emphasis color="orange">teach Claude to create great skills</Emphasis>
+  </>,
+  <>
+    run deep research on the best practices, feed Claude <SlideLink href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices">
       https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices
-    </SlideLink>{' '}
-    as a starting point
+    </SlideLink> and <SlideLink href="https://agentskills.io/skill-creation/best-practices">
+      https://agentskills.io/skill-creation/best-practices
+    </SlideLink>, and ask Claude to{' '}
+    <Emphasis color="green">create a skill how to create skills</Emphasis>
+  </>,
+  <>
+    <Emphasis color="orange">THIS IS YOUR MOST IMPORTANT SKILL!</Emphasis> its quality determines the quality of every{' '}
+    other skill, so make sure to invest the time to get it right
   </>,
 ];
 
@@ -110,8 +119,8 @@ export const MetaSkillSlide: SlideDefinition = {
   title: (
     <>
       <span className="text-dim">&gt;</span>{' '}
-      <span className="text-green">meta</span>{' '}
-      <span className="text-orange">skill</span>
+      <span className="text-green">do I need to know</span>{' '}
+      <span className="text-orange">all of this?</span>
     </>
   ),
   // 4 reveal stages: 0..2 walk through FIRST_SET (full-width thesis),

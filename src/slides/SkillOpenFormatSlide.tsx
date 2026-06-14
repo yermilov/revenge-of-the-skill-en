@@ -30,24 +30,21 @@ const TAIL: Line[] = [
 
 const BULLETS: ReactNode[] = [
   <>
-    the <Emphasis color="green">open core</Emphasis> — name + description + body —
-    is all any agent needs
+    directory, SKILL.md name + description + body —{' '}
+    is part of <Emphasis color="green">open standard</Emphasis>
   </>,
   <>
-    Claude-only frontmatter is{' '}
-    <Emphasis color="orange">progressive enhancement</Emphasis> — ignored
-    elsewhere, never breaks it
-  </>,
-  <>
-    core behavior out of <Code>!`cmd`</Code> + <Code>$vars</Code> — those run
-    only in Claude Code
+    Claude-only specifics: most frontmatter fields, <Code>!`cmd`</Code>, <Code>$vars</Code>
   </>,
   <>
     discovery differs: <Code>.claude/skills/</Code> vs <Code>.agents/skills/</Code>
   </>,
   <>
-    <Emphasis color="green">strip the Claude fields</Emphasis> — does it still
-    work? then it’s portable
+    skill body instructions might be tailored to harness or model specifics
+  </>,
+  <>
+    usually other agents <Emphasis color="green">understand even Claude-specific skills well</Emphasis>,{' '}
+    but keep an eye if it makes sense to maintain two versions
   </>,
 ];
 
@@ -56,12 +53,16 @@ export const SkillOpenFormatSlide: SlideDefinition = {
   title: (
     <>
       <span className="text-dim">&gt;</span>{' '}
-      <span className="text-green">portable</span>{' '}
-      <span className="text-orange">by default</span>
+      <span className="text-green">skills</span>{' '}
+      <span className="text-orange">for other agents</span>
     </>
   ),
   content: ({ revealStage }) => {
     const lines = revealStage >= 1 ? [...HEAD, ...CLAUDE_BLOCK, ...TAIL] : [...HEAD, ...TAIL];
+    // Sliding window keeps the newest rules on screen as the (now longer)
+    // bullets grow past what fits; the left specimen stays put.
+    const WINDOW = 3;
+    const firstVisible = Math.max(0, revealStage - WINDOW + 1);
     return (
       <div className="of-wrap">
         {/* Left — one SKILL.md, the open core vs the Claude-only block */}
@@ -96,7 +97,7 @@ export const SkillOpenFormatSlide: SlideDefinition = {
         {/* Right — how to keep it portable */}
         <div className="of-right">
           {BULLETS.map((bullet, i) =>
-            revealStage >= i ? (
+            revealStage >= i && i >= firstVisible ? (
               <SlideItem key={i} delay={revealStage === i ? 0.05 : 0}>
                 {bullet}
               </SlideItem>

@@ -15,8 +15,10 @@ const KNOWLEDGE: ReactNode[] = [
   <>more often invokable by model than by user</>,
 ];
 
-const KNOWLEDGE_START = INSTRUCTIONS.length;
-const LAST_STAGE = INSTRUCTIONS.length + KNOWLEDGE.length - 1;
+// Stage 0 shows just the two column headers; facts start revealing at stage 1.
+const FACTS_START = 1;
+const KNOWLEDGE_START = FACTS_START + INSTRUCTIONS.length;
+const LAST_STAGE = FACTS_START + INSTRUCTIONS.length + KNOWLEDGE.length - 1;
 
 export const SkillPatternsSlide: SlideDefinition = {
   id: 'skill-patterns',
@@ -48,7 +50,7 @@ export const SkillPatternsSlide: SlideDefinition = {
         >
           <div className="ivk-col__head">instructions</div>
           {INSTRUCTIONS.map((fact, i) =>
-            revealStage >= i ? (
+            revealStage >= FACTS_START + i ? (
               <div key={i} className="ivk-item">
                 {fact}
               </div>
