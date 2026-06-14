@@ -55,14 +55,35 @@ console.error(
 );
 process.exit(2);`;
 
+// A real session: the block path firing on a live gh call, then succeeding
+// once the skill is loaded. (⏺ = Claude's action, ⎿ = its result.)
+const TRANSCRIPT_CODE = `⏺ Bash(gh pr view 485 --json title,url,…)
+  ⎿ Error: PreToolUse:Bash hook — BLOCKED:
+    Required skill not loaded: cicd:github
+
+    ACTION REQUIRED:
+    1. Use the Skill tool to load cicd:github NOW.
+    2. READ and INTERNALIZE the knowledge.
+    3. REEVALUATE your planned action.
+
+⏺ Skill(cicd:github)
+  ⎿ Successfully loaded skill
+
+⏺ Bash(gh pr view 485 … --jq '…')
+  ⎿ { "additions": 20974,
+      "author": "yaroslav-yermilov_super", … }`;
+
 type PanelVariant = {
   key: string;
   label: string;
-  language: 'yaml' | 'json' | 'typescript';
+  language: 'yaml' | 'json' | 'typescript' | 'text';
   code: string;
 };
 
 function panelFor(revealStage: number): PanelVariant | null {
+  if (revealStage >= 5) {
+    return { key: 'live', label: 'a real session', language: 'text', code: TRANSCRIPT_CODE };
+  }
   if (revealStage >= 4) {
     return { key: 'block', label: 'match-prompt.js — block path', language: 'typescript', code: BLOCK_CODE };
   }
@@ -111,7 +132,7 @@ function SkillsActivatorContent({ revealStage }: { revealStage: number }) {
           </SlideItem>
         )}
 
-        {revealStage >= 3 && (
+        {revealStage >= 3 && revealStage <= 4 && (
           <SlideItem delay={0} reveal>
             when a hook sees a required skill is not loaded — it{' '}
             <Emphasis color="green">nudges</Emphasis> Claude by injecting context
@@ -125,6 +146,14 @@ function SkillsActivatorContent({ revealStage }: { revealStage: number }) {
             and for critical cases — it <Emphasis color="orange">blocks</Emphasis>{' '}
             the call via <Emphasis color="orange">exit 2</Emphasis> + stderr with
             instructions on which skill to load
+          </SlideItem>
+        )}
+
+        {revealStage >= 5 && (
+          <SlideItem delay={0} reveal>
+            live — the hook blocks a real <Emphasis color="orange">gh pr view</Emphasis>,
+            Claude loads <Emphasis color="green">cicd:github</Emphasis>, then the
+            call goes through
           </SlideItem>
         )}
       </div>
@@ -152,7 +181,7 @@ export const SkillsActivatorSlide: SlideDefinition = {
       <span className="text-orange">skills activator</span>
     </span>
   ),
-  maxRevealStages: 4,
+  maxRevealStages: 5,
   content: ({ revealStage }) => <SkillsActivatorContent revealStage={revealStage} />,
   notes:
     'Skills discovery — the last-mile problem. Stage 0: the problem (single line, no panel). Stage 1: SKILL.md activation rules (keywords / tools / directories). Stage 2: ~/.claude/hooks.json — the full set of 6 hooks (SessionStart → SessionEnd) analyzing prompts, bash commands, tool calls and their outputs. Stage 3: suggest — prompt injection via additionalContext, exit 0. Stage 4: block — stderr + exit 2 for critical cases.',
