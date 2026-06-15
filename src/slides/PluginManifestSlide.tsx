@@ -24,10 +24,6 @@ const BULLETS: ReactNode[] = [
     truth</Emphasis> — bump it or users stay on the cached copy
   </>,
   <>
-    keep it lean — skills, agents, hooks{' '}
-    <Emphasis color="green">auto-discover</Emphasis> from the dir layout
-  </>,
-  <>
     pull in other plugins with <Code>dependencies</Code> — installed
     automatically alongside yours
   </>,

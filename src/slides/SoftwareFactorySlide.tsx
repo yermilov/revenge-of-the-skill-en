@@ -125,7 +125,7 @@ export const SoftwareFactorySlide: SlideDefinition = {
             <SlideItem delay={0}>
               <Emphasis color="green">gas town</Emphasis>,{' '}
               <Emphasis color="green">ralph loop</Emphasis>, your in-house
-              framework you named <Emphasis color="green">"minion"</Emphasis>
+              framework you might have named <Emphasis color="green">"minion"</Emphasis>
             </SlideItem>
           )}
 

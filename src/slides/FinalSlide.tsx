@@ -1,39 +1,41 @@
 import { ReactNode } from 'react';
 import { SlideDefinition } from '../types/slides';
-import { SlideItem, Emphasis, SlideLink, Code } from '../components/SlideElements';
+import { SlideItem, Emphasis, Code } from '../components/SlideElements';
 import linkedinQr from '/linkedin-qr.jpeg?url';
 
 const BULLETS: ReactNode[] = [
   <>
-    don't box yourself into thinking of it as autocomplete or a code generator —
-    improvise, talk to it like a{' '}
-    <Emphasis color="green">partner in a chat</Emphasis>
+    skills = <Emphasis color="green">reusable expertise</Emphasis> — teach Claude
+    once, reuse forever; capture your next <Emphasis color="green">repeatable
+    task</Emphasis> or recurring mistake as one
   </>,
   <>
-    get on Twitter (yeah, I don't like Elon either) and follow the people who
-    matter in AI engineering:{' '}
-    <SlideLink href="https://x.com/bcherny">@bcherny</SlideLink>,{' '}
-    <SlideLink href="https://x.com/trq212">@trq212</SlideLink>,{' '}
-    <SlideLink href="https://x.com/ClaudeCodeLog">@ClaudeCodeLog</SlideLink>,{' '}
-    <SlideLink href="https://x.com/mitchellh">@mitchellh</SlideLink>,{' '}
-    <SlideLink href="https://x.com/steipete">@steipete</SlideLink>,{' '}
-    <SlideLink href="https://x.com/jarredsumner">@jarredsumner</SlideLink>,{' '}
-    <SlideLink href="https://x.com/ClaudeDevs">@ClaudeDevs</SlideLink>{' '}
-    — but filter out the hype and the empty noise
-  </>,
-  <>try new approaches, but adapt them to your own needs</>,
-  <>not sure about something? just ask <Code>@claude-code-guide</Code></>,
-  <>
-    use Claude Code to boost your <Emphasis color="green">throughput</Emphasis>,
-    not your <Emphasis color="orange">latency</Emphasis>
+    they compose: <Emphasis color="orange">basic → task → workflow</Emphasis> —
+    small skills stack into whole jobs
   </>,
   <>
-    watch out for <Emphasis color="orange">AI-FOMO</Emphasis> and{' '}
-    <Emphasis color="orange">burnout</Emphasis>: AI shifts the bottleneck from
-    mechanical tasks to <Emphasis color="green">actual thinking</Emphasis>
+    <Code>hooks</Code> <Emphasis color="green">always run</Emphasis> (skills the
+    model <Emphasis color="orange">chooses</Emphasis>) — enforce, validate, track
+    what's used
   </>,
   <>
-    I'll answer all your questions now, but you can also reach out to me on LinkedIn any time{' '}
+    distribute across the team — stand up a{' '}
+    <Emphasis color="green">marketplace</Emphasis> and force-install it
+  </>,
+  <>
+    don't memorize any of this — build <Code>skill-dev</Code> ·{' '}
+    <Code>hook-dev</Code> · <Code>plugin-dev</Code> skills with the right
+    activation
+  </>,
+  <>
+    share the building blocks → the team's{' '}
+    <Emphasis color="green">flywheel</Emphasis> spins faster
+  </>,
+  <>
+    questions? ask me know or <Code>@claude-code-guide</Code> later
+  </>,
+  <>
+    or reach me on LinkedIn{' '}
     <span style={{ color: 'var(--terminal-blue)' }}>→</span>
   </>,
 ];

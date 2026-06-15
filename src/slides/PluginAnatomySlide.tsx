@@ -23,10 +23,6 @@ const BULLETS: ReactNode[] = [
     it can ship <Emphasis color="orange">skills · agents · hooks · commands ·
     MCP servers</Emphasis> — all namespaced <Code>plugin:name</Code>
   </>,
-  <>
-    only <Code>plugin.json</Code> goes in <Code>.claude-plugin/</Code> — every
-    component dir lives at the <Emphasis color="green">root</Emphasis>
-  </>,
 ];
 
 export const PluginAnatomySlide: SlideDefinition = {

@@ -122,9 +122,9 @@ export const AgentsSlide: SlideDefinition = {
   id: 'agents',
   title: (
     <>
-      <span className="text-dim">$</span>{' '}
-      <span className="text-green">skills</span>{' '}
-      <span className="text-orange">--agents</span>
+      <span className="text-dim">&gt;</span>{' '}
+      <span className="text-green">what's</span>{' '}
+      <span className="text-orange">next</span>
     </>
   ),
   maxRevealStages: 3,

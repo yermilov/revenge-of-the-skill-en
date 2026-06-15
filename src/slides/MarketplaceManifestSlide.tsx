@@ -32,10 +32,6 @@ const BULLETS: ReactNode[] = [
     sources: <Emphasis color="green">relative path · github · git url ·
     npm</Emphasis>
   </>,
-  <>
-    relative paths only resolve when the marketplace is{' '}
-    <Emphasis color="orange">git-hosted</Emphasis> — not for a raw JSON URL
-  </>,
 ];
 
 export const MarketplaceManifestSlide: SlideDefinition = {

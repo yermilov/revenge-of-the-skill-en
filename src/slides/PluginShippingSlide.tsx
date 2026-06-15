@@ -23,16 +23,14 @@ const BULLETS: ReactNode[] = [
     <Code>/plugin install name@market</Code>
   </>,
   <>
-    org-wide: <Emphasis color="green">force-install</Emphasis> via{' '}
+    org-wide: <Emphasis color="green">force-install</Emphasis> via the org's{' '}
+    <Emphasis color="orange">managed</Emphasis> <Code>settings.json</Code> —{' '}
     <Code>extraKnownMarketplaces</Code> + <Code>enabledPlugins</Code>
   </>,
   <>
-    <Emphasis color="orange">custom marketplaces don't auto-update</Emphasis> —
-    set <Code>autoUpdate: true</Code> or run <Code>/plugin marketplace update</Code>
-  </>,
-  <>
-    <Emphasis color="green">validate before you publish</Emphasis> —{' '}
-    <Code>claude plugin validate ./plugin --strict</Code>
+    or at the <Emphasis color="green">product-repo level</Emphasis> — commit the
+    same <Code>extraKnownMarketplaces</Code> + <Code>enabledPlugins</Code> to the
+    repo's <Code>.claude/settings.json</Code>
   </>,
 ];
 
@@ -78,5 +76,5 @@ export const PluginShippingSlide: SlideDefinition = {
   maxRevealStages: BULLETS.length - 1,
   initialRevealStage: 0,
   notes:
-    'Plugins refresher (4/4) — shipping. Any user: /plugin marketplace add <github-repo|url|path>, then /plugin install <name>@<marketplace> (or the interactive /plugin menu). Org-wide via managed settings.json: extraKnownMarketplaces pre-registers the marketplace, enabledPlugins force-enables specific plugins non-overridably. Gotcha: official + community marketplaces auto-update by default, but custom/third-party ones do NOT — turn on "autoUpdate": true in the marketplace entry, or users must run /plugin marketplace update manually. Validate before publishing with `claude plugin validate ./plugin --strict` to catch misspelled manifest fields (unknown fields are warnings, not errors, so typos slip through silently).',
+    'Plugins refresher (4/4) — shipping. Any user: /plugin marketplace add <github-repo|url|path>, then /plugin install <name>@<marketplace> (or the interactive /plugin menu). Force-install at two levels via the same two keys: (1) org-wide through managed/enterprise settings.json — extraKnownMarketplaces pre-registers the marketplace, enabledPlugins force-enables specific plugins non-overridably; (2) at the product-repo level — commit the same extraKnownMarketplaces + enabledPlugins to the repo\'s .claude/settings.json so everyone working in that repo gets the marketplace and plugins automatically. (Also worth knowing off-slide: custom marketplaces don\'t auto-update unless autoUpdate:true; validate before publishing with `claude plugin validate ./plugin --strict`.)',
 };

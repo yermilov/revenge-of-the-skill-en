@@ -21,9 +21,8 @@ const BULLETS: ReactNode[] = [
     plugin.json's terse label
   </>,
   <>
-    <Code>category</Code>: pick one —{' '}
-    <Emphasis color="orange">development · agents · frontend · infra ·
-    productivity · workflows</Emphasis>
+    <Code>category</Code>: <Emphasis color="orange">come up with a category
+    system</Emphasis>
   </>,
   <>
     <Code>keywords</Code> (in plugin.json): 3+ covering the{' '}
@@ -33,10 +32,6 @@ const BULLETS: ReactNode[] = [
   <>
     a <Emphasis color="orange">README is required</Emphasis> — name · install ·
     every component listed, no silent skills or hooks
-  </>,
-  <>
-    keep components <Emphasis color="green">on-topic</Emphasis> — a CI plugin
-    shouldn't ship a design-system skill
   </>,
 ];
 
