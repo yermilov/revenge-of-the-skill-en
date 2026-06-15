@@ -173,13 +173,12 @@ function SkillsActivatorContent({ revealStage }: { revealStage: number }) {
 export const SkillsActivatorSlide: SlideDefinition = {
   id: 'skills-activator',
   title: (
-    // Long title — scope it smaller + nowrap so it stays on one line; a
-    // two-line title overlaps the content and hides the panel's top border.
-    <span className="sa-title">
+    <>
       <span className="text-dim">&gt;</span>{' '}
-      <span className="text-green">customization example —</span>{' '}
+      <span className="text-green">customization</span>
+      <span className="text-dim"> — </span>
       <span className="text-orange">skills activator</span>
-    </span>
+    </>
   ),
   maxRevealStages: 5,
   content: ({ revealStage }) => <SkillsActivatorContent revealStage={revealStage} />,

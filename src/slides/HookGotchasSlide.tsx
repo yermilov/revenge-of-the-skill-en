@@ -13,25 +13,19 @@ const BULLETS: ReactNode[] = [
     proceeds (the #1 mistake)
   </>,
   <>
-    hooks run with your <Emphasis color="orange">full shell</Emphasis> — quote and
-    validate every input
+    always print <Code>{'{}'}</Code> on exit 0 — silent success shows as a{' '}
+    <Emphasis color="orange">“hook error”</Emphasis>
   </>,
   <>
     keep them <Emphasis color="green">under ~500ms</Emphasis> — they fire on every
     matching event
   </>,
   <>
-    a blocking <Code>Stop</Code> hook can loop — bail when{' '}
-    <Code>stop_hook_active</Code>
-  </>,
-  <>
-    always print <Code>{'{}'}</Code> on exit 0 — silent success shows as a{' '}
-    <Emphasis color="orange">“hook error”</Emphasis>
+    <Code>async: true</Code> is <Emphasis color="green">fire-and-forget</Emphasis> —
+    non-blocking, so <Emphasis color="orange">exit 2 is ignored</Emphasis>; use it
+    for logging / notifications
   </>,
 ];
-
-// Sliding window keeps the newest gotchas readable as the list grows.
-const WINDOW = 3;
 
 export const HookGotchasSlide: SlideDefinition = {
   id: 'hook-gotchas',
@@ -42,41 +36,38 @@ export const HookGotchasSlide: SlideDefinition = {
       <span className="text-orange">gotchas</span>
     </>
   ),
-  content: ({ revealStage }) => {
-    const firstVisible = Math.max(0, revealStage - WINDOW + 1);
-    return (
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: 'var(--space-xl)',
-          width: '100%',
-          height: '100%',
-          minHeight: 0,
-          overflow: 'hidden',
-        }}
-      >
-        {/* Left — the exit-code cheat sheet (the heart of the gotchas) */}
-        <div style={{ flex: '0 1 auto', minWidth: 0 }}>
-          <CodeBlock language="text" code={EXIT_CODES} />
-        </div>
-
-        {/* Right — the gotchas */}
-        <div style={{ flex: '1 1 46%', maxWidth: '700px', textAlign: 'left' }}>
-          {BULLETS.map((bullet, i) =>
-            revealStage >= i && i >= firstVisible ? (
-              <SlideItem key={i} delay={revealStage === i ? 0.05 : 0}>
-                {bullet}
-              </SlideItem>
-            ) : null,
-          )}
-        </div>
+  content: ({ revealStage }) => (
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 'var(--space-xl)',
+        width: '100%',
+        height: '100%',
+        minHeight: 0,
+        overflow: 'hidden',
+      }}
+    >
+      {/* Left — the exit-code cheat sheet (the heart of the gotchas) */}
+      <div style={{ flex: '0 1 auto', minWidth: 0 }}>
+        <CodeBlock language="text" code={EXIT_CODES} />
       </div>
-    );
-  },
+
+      {/* Right — the gotchas */}
+      <div style={{ flex: '1 1 46%', maxWidth: '700px', textAlign: 'left' }}>
+        {BULLETS.map((bullet, i) =>
+          revealStage >= i ? (
+            <SlideItem key={i} delay={revealStage === i ? 0.05 : 0}>
+              {bullet}
+            </SlideItem>
+          ) : null,
+        )}
+      </div>
+    </div>
+  ),
   maxRevealStages: BULLETS.length - 1,
   initialRevealStage: 0,
   notes:
-    'Hooks refresher (4/4) — gotchas. 1) Only exit 2 blocks; exit 1 logs and continues — the most common mistake. 2) Hooks inherit your full shell permissions, so quote and validate every input (read all stdin first, jq -r with // empty fallbacks). 3) Keep them under ~500ms — they fire on every matching event and a slow hook makes the session sluggish. 4) A blocking Stop hook re-triggers Stop → infinite loop; bail early when stop_hook_active is true. 5) A hook that exits 0 with no stdout is misreported as a "hook error" in the transcript — always print at least {}. (Also: PostToolUse can\'t undo, matchers are case-sensitive, all matching hooks run in parallel.)',
+    'Hooks refresher (4/4) — gotchas. 1) Only exit 2 blocks; exit 1 logs and continues — the most common mistake. 2) A hook that exits 0 with no stdout is misreported as a "hook error" in the transcript — always print at least {}. 3) Keep them under ~500ms — they fire on every matching event and a slow hook makes the session sluggish. 4) Async hooks: set "async": true to fire-and-forget; Claude does not wait, so they are non-blocking and exit 2 is ignored — use them for logging / notifications / cleanup, NOT for gating. (Also worth knowing: hooks run with your full shell so quote/validate inputs; a blocking Stop hook can loop unless you bail on stop_hook_active; PostToolUse can\'t undo; matchers are case-sensitive; all matching hooks run in parallel.)',
 };

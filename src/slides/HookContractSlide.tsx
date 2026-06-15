@@ -19,13 +19,21 @@ const BULLETS: ReactNode[] = [
     cwd, <Code>tool_name</Code>, <Code>tool_input</Code>
   </>,
   <>
-    out: <Emphasis color="orange">exit 2 blocks</Emphasis> (stderr → Claude),
-    exit 0 allows — <Emphasis color="orange">exit 1 does NOT block</Emphasis>,
-    it just logs
+    out: an <Emphasis color="green">exit code</Emphasis> (see the script), or{' '}
+    <Emphasis color="green">JSON on stdout</Emphasis>:
   </>,
   <>
-    or print JSON: <Code>permissionDecision</Code> allow / deny / ask,{' '}
-    <Code>additionalContext</Code>, <Code>updatedInput</Code>
+    <Code>permissionDecision</Code>:{' '}
+    <Emphasis color="green">allow / deny / ask</Emphasis> — skip the prompt,
+    cancel the call, or prompt as normal
+  </>,
+  <>
+    <Code>additionalContext</Code> — inject text straight into{' '}
+    <Emphasis color="green">Claude's context</Emphasis>
+  </>,
+  <>
+    <Code>updatedInput</Code> — <Emphasis color="orange">rewrite the tool's
+    params</Emphasis> before it runs (add <Code>--dry-run</Code>, fix a path)
   </>,
 ];
 
@@ -38,36 +46,42 @@ export const HookContractSlide: SlideDefinition = {
       <span className="text-orange">contract</span>
     </>
   ),
-  content: ({ revealStage }) => (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: 'var(--space-xl)',
-        width: '100%',
-        height: '100%',
-        minHeight: 0,
-        overflow: 'hidden',
-      }}
-    >
-      {/* Left — a minimal command hook */}
-      <div style={{ flex: '0 1 auto', minWidth: 0 }}>
-        <CodeBlock language="bash" code={HOOK_SCRIPT} />
-      </div>
+  content: ({ revealStage }) => {
+    // Sliding window: with 5 bullets the in/out preamble + 3 JSON fields don't
+    // all fit, so the opening "in:" bullet drops off once the last field reveals.
+    const WINDOW = 4;
+    const firstVisible = Math.max(0, revealStage - WINDOW + 1);
+    return (
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 'var(--space-xl)',
+          width: '100%',
+          height: '100%',
+          minHeight: 0,
+          overflow: 'hidden',
+        }}
+      >
+        {/* Left — a minimal command hook */}
+        <div style={{ flex: '0 1 auto', minWidth: 0 }}>
+          <CodeBlock language="bash" code={HOOK_SCRIPT} />
+        </div>
 
-      {/* Right — the stdin/exit/stdout contract */}
-      <div style={{ flex: '1 1 42%', maxWidth: '660px', textAlign: 'left' }}>
-        {BULLETS.map((bullet, i) =>
-          revealStage >= i ? (
-            <SlideItem key={i} delay={revealStage === i ? 0.05 : 0}>
-              {bullet}
-            </SlideItem>
-          ) : null,
-        )}
+        {/* Right — the stdin/exit/stdout contract */}
+        <div style={{ flex: '1 1 42%', maxWidth: '660px', textAlign: 'left' }}>
+          {BULLETS.map((bullet, i) =>
+            revealStage >= i && i >= firstVisible ? (
+              <SlideItem key={i} delay={revealStage === i ? 0.05 : 0}>
+                {bullet}
+              </SlideItem>
+            ) : null,
+          )}
+        </div>
       </div>
-    </div>
-  ),
+    );
+  },
   maxRevealStages: BULLETS.length - 1,
   initialRevealStage: 0,
   notes:

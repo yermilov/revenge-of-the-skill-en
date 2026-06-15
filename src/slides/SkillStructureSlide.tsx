@@ -16,7 +16,7 @@ const TREE_NODES: TreeNode[] = [
   { stage: 1, label: 'SKILL.md' },
   { stage: 5, label: 'references/', children: ['spec.md', 'examples.md'] },
   { stage: 6, label: 'scripts/', children: ['validate.mjs'] },
-  { stage: 7, label: 'templates/', children: ['report.html'] },
+  { stage: 8, label: 'templates/', children: ['report.html'] },
 ];
 
 function buildTree(revealStage: number): string {
@@ -66,6 +66,20 @@ Changes: !\`git status --short\`
 Draft a Conventional Commits message for the
 changes shown above.`;
 
+// The scripts beat zooms back into SKILL.md to show how the body actually
+// reaches a bundled script: ${CLAUDE_SKILL_DIR} resolves to the skill's own
+// folder, and the instructions hand the agent the exact command to run.
+const SCRIPT_INVOKE_STAGE = 7;
+
+const SKILL_MD_SCRIPT = `# Validate
+
+Run the check and fix whatever it reports:
+
+  node \${CLAUDE_SKILL_DIR}/scripts/validate.mjs
+
+\${CLAUDE_SKILL_DIR} resolves to this skill's own
+folder — the path works wherever it's installed.`;
+
 const BULLETS: ReactNode[] = [
   <>
     skills are distributed as <Emphasis color="green">directories</Emphasis>
@@ -94,6 +108,11 @@ const BULLETS: ReactNode[] = [
   </>,
   <>
     <Code>scripts/</Code> — it can contain TypeScript / Python / bash scripts for deterministic automation
+  </>,
+  <>
+    to invoke one, the instructions resolve its path from{' '}
+    <Code>{'${CLAUDE_SKILL_DIR}'}</Code> and give the exact command — only its{' '}
+    <Emphasis color="green">output</Emphasis> returns to context, never the code
   </>,
   <>
     directory names aren't prescribed — name them after their{' '}
@@ -145,6 +164,12 @@ export const SkillStructureSlide: SlideDefinition = {
               language="markdown"
               filename="cat commit-helper/SKILL.md"
               code={SKILL_MD_INLINE}
+            />
+          ) : revealStage === SCRIPT_INVOKE_STAGE ? (
+            <CodeBlock
+              language="markdown"
+              filename="cat quit-vim/SKILL.md"
+              code={SKILL_MD_SCRIPT}
             />
           ) : (
             <CodeBlock

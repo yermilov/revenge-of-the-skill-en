@@ -2135,15 +2135,6 @@
  * small-caps label on the left, color-coded field chips wrapping right.
  * Groups appear per reveal stage via the shared slideItemFadeIn keyframe. */
 
-/* The frontmatter title is the deck's longest (it appends a dynamic section).
- * Cap it below the global h2 size and keep it on one line so it can't wrap or
- * clip against the slide's top edge on wide/tall displays. */
-.fm-title {
-  display: inline-block;
-  white-space: nowrap;
-  font-size: clamp(1.5rem, 3vw, 3.5rem);
-}
-
 /* Two columns: left frames the concern group and teaches the focused field;
  * right shows an imaginary skill's full frontmatter with the active line lit
  * in the group accent (--fm-accent) and every other line dimmed. */
@@ -2385,14 +2376,6 @@
   font-weight: 700;
   text-shadow: 0 0 22px rgba(126, 231, 135, 0.45);
   animation: slideItemFadeIn var(--transition-slow) var(--ease) both;
-}
-
-/* skills-activator title is long; cap it below the global h2 size and keep
- * it on one line so it can't wrap into the body and hide the panel border. */
-.sa-title {
-  display: inline-block;
-  white-space: nowrap;
-  font-size: clamp(1.5rem, 3.3vw, 3.4rem);
 }
 
 /* === OPEN FORMAT (AGENTSKILLS.IO) SLIDE === */

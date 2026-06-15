@@ -352,14 +352,12 @@ export const SkillFrontmatterMapSlide: SlideDefinition = {
   title: ({ revealStage }) => {
     const { group } = resolveActive(revealStage);
     return (
-      // This title carries a dynamic section, making it the deck's longest —
-      // scope it smaller + nowrap so it never wraps or clips on wide displays.
-      <span className="fm-title">
+      <>
         <span className="text-dim">&gt;</span>{' '}
         <span className="text-orange">frontmatter</span>
         <span className="text-dim"> — </span>
         <span className="text-green">{group.label}</span>
-      </span>
+      </>
     );
   },
   content: ({ revealStage }) => {
