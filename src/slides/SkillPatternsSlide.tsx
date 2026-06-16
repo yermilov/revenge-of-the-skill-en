@@ -10,8 +10,8 @@ const INSTRUCTIONS: ReactNode[] = [
 
 // Right column — knowledge skills. Revealed only after every instruction fact.
 const KNOWLEDGE: ReactNode[] = [
-  <>facts the model don't know - most often about your internal specifics</>,
-  <>or gotchas for common mistakes model makes</>,
+  <>facts the model doesn't know - most often about your internal specifics</>,
+  <>or gotchas for common mistakes the model makes</>,
   <>more often invokable by model than by user</>,
 ];
 

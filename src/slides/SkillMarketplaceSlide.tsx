@@ -15,7 +15,7 @@ const BULLETS: ReactNode[] = [
     picks which plugins to install
   </>,
   <>
-    <Emphasis color="orange">WARNING!</Emphasis> custom marketplaces doesn't update automatically
+    <Emphasis color="orange">WARNING!</Emphasis> custom marketplaces don't update automatically
   </>,
   <>
     create interactive <Code>/setup-plugins</Code> skill that helps users discover and install the relevant plugins for their needs and enable marketplace auto-update

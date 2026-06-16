@@ -32,7 +32,7 @@ const BULLETS: ReactNode[] = [
     <Emphasis color="green">flywheel</Emphasis> spins faster
   </>,
   <>
-    questions? ask me know or <Code>@claude-code-guide</Code> later
+    questions? ask me now or <Code>@claude-code-guide</Code> later
   </>,
   <>
     or reach me on LinkedIn{' '}
